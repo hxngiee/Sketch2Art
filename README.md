@@ -1,2 +1,12 @@
 # Sketch2Art
-21-1 Art&amp;Tech class in GIST
+
+## Additional Module
+- Add Sketch2Art Module to Pix2Pix model
+- Add Multi GPU to Pix2Pix model
+
+## Dataset
+- Domain A : Sketch
+- Domain B : painting
+
+
+
