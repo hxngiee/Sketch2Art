@@ -12,6 +12,6 @@ Additional Module to Pix2Pix model
 
 ### Project II
 Additional Module to MUNIT model
-- Add Positional Normalization Module to MUNIT model
+- Add `Positional Normalization` Module to MUNIT model
 
 
