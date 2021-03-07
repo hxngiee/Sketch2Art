@@ -8,7 +8,7 @@
 ## Project I
 Additional Module to Pix2Pix model
 - Add `Sketch2Art Module` to Pix2Pix model
-- Add `Multi GPU` to Pix2Pix model
+- Add `NVIDIA Apex code for Multi GPU` to train Sketch2Art model
 
 ## Project II
 Additional Module to MUNIT model
