@@ -5,7 +5,7 @@
 
 ## Dataset
 - Domain A : Sketch
-- Domain B : painting
+- Domain B : painting 
 i.e) pix2pix(50000/100), munit
 
 ## Project I
