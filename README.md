@@ -4,8 +4,8 @@
 ## Problem efinition
 
 ## Dataset
-- Domain A : Sketch
-- Domain B : painting 
+- Domain A : Sketch (landscape image with edge detection)
+- Domain B : painting (WikiArt dataset)
 i.e) pix2pix(50000/100), munit
 
 ## Project I
