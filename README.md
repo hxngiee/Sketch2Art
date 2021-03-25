@@ -18,3 +18,4 @@ Additional Module to MUNIT model
 - Add `Positional Normalization` Module to MUNIT model
 - compare FID, LPIPS score
 
+SketchDataset -> StlyeGAN2-ADA
