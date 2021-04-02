@@ -1,7 +1,7 @@
 # Sketch2Art
 2021-1 "Art&Tech" class, GIST
 
-## Problem efinition
+## Problem definition
 
 ## Dataset
 - Domain A : Sketch (landscape image with canny edge detection)
