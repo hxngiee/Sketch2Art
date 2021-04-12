@@ -4,18 +4,19 @@
 ## Problem definition
 
 ## Dataset
-- Domain A : Sketch (landscape image with canny edge detection)
-- Domain B : painting (WikiArt dataset)
-i.e) pix2pix(50000/100), munit
+```
+pix2pix used 50,000 train data for good performance
+```
+- Domain A : Sketch dataset (landscape image with canny edge detection)
+- Domain B : painting dataset(WikiArt dataset)
+
 
 ## Project I
 Additional Module to Pix2Pix model
 - Add `Sketch2Art Module` to Pix2Pix model
-- Add `NVIDIA Apex code for Multi GPU` to train Sketch2Art model
+- Add `Pytorch DDP(DistributedDataParallel) code for Multi GPU Training` to train Sketch2Art model
 
 ## Project II
 Additional Module to MUNIT model
 - Add `Positional Normalization` Module to MUNIT model
 - compare FID, LPIPS score
-
-SketchDataset -> StlyeGAN2-ADA
