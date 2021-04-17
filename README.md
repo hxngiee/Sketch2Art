@@ -3,8 +3,10 @@
 
 ## Problem definition
 
+
 ## Dataset
 ```
+1. To get enough sketch data use DeepLab3+ for data preprocessing
 pix2pix used 50,000 train data for good performance
 ```
 - Domain A : Sketch dataset (landscape image with canny edge detection)
