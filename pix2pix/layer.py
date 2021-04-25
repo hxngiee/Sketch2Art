@@ -262,3 +262,21 @@ class SSIM2dLoss(nn.Module):
         loss = 0
         return loss
 
+class DMI(nn.Module): #Dual Mask Injection
+    def __init__(self, in_channels):
+        super().__init__()
+        
+        self.weight_a = nn.Parameter(torch.ones(1, in_channels, 1, 1)*1.1)
+        self.weight_b = nn.Parameter(torch.ones(1, in_channels, 1, 1)*0.9)
+
+        self.bias_a = nn.Parameter(torch.zeros(1, in_channels, 1, 1)+0.01)
+        self.bias_b = nn.Parameter(torch.zeros(1, in_channels, 1, 1)+0.01)
+
+    def forward(self, feat, mask_raw):
+                        
+        mask = F.interpolate(mask_raw, size=(feat.size(2), feat.size(3)))
+        mask_bin = (torch.mean(mask, dim=1).unsqueeze(1) > 0) * 1
+        mask_bin = mask_bin.type(mask.dtype)
+        feat_a = self.weight_a * feat * mask_bin + self.bias_a
+        feat_b = self.weight_b * feat * (1-mask_bin) + self.bias_b
+        return feat_a + feat_b

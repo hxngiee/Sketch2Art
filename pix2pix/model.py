@@ -37,6 +37,14 @@ class UNet(nn.Module):
         self.dec3 = DECNR2d(2 * 4 * self.nch_ker, 2 * self.nch_ker, stride=2, norm=self.norm, relu=0.0, drop=[])
         self.dec2 = DECNR2d(2 * 2 * self.nch_ker, 1 * self.nch_ker, stride=2, norm=self.norm, relu=0.0, drop=[])
         self.dec1 = DECNR2d(2 * 1 * self.nch_ker, 1 * self.nch_out, stride=2, norm=[],        relu=[],  drop=[], bias=False)
+        
+        self.DMI8 = DMI(8 * self.nch_ker)
+        self.DMI7 = DMI(8 * self.nch_ker)
+        self.DMI6 = DMI(8 * self.nch_ker)
+        self.DMI5 = DMI(8 * self.nch_ker)
+        self.DMI4 = DMI(4 * self.nch_ker)
+        self.DMI3 = DMI(2 * self.nch_ker)
+        self.DMI2 = DMI(1 * self.nch_ker)
 
     def forward(self, x):
 
@@ -50,12 +58,26 @@ class UNet(nn.Module):
         enc8 = self.enc8(enc7)
 
         dec8 = self.dec8(enc8)
+        dec8 = self.DMI8(dec8, x)
+        
         dec7 = self.dec7(torch.cat([enc7, dec8], dim=1))
+        dec7 = self.DMI7(dec7, x)
+        
         dec6 = self.dec6(torch.cat([enc6, dec7], dim=1))
+        dec6 = self.DMI6(dec6, x)
+        
         dec5 = self.dec5(torch.cat([enc5, dec6], dim=1))
+        dec5 = self.DMI5(dec5, x)
+        
         dec4 = self.dec4(torch.cat([enc4, dec5], dim=1))
+        dec4 = self.DMI4(dec4, x)
+        
         dec3 = self.dec3(torch.cat([enc3, dec4], dim=1))
+        dec3 = self.DMI3(dec3, x)
+        
         dec2 = self.dec2(torch.cat([enc2, dec3], dim=1))
+        dec2 = self.DMI2(dec2, x)
+        
         dec1 = self.dec1(torch.cat([enc1, dec2], dim=1))
 
         x = torch.tanh(dec1)
