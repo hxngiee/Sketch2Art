@@ -1,6 +1,8 @@
 # Sketch2Art Work in Progress
 2021-1 "Art&Tech" class, GIST
 
+![ex_screenshot](./img/sketch2cat.png)
+
 ## Problem definition
 
 
