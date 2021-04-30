@@ -1,4 +1,4 @@
-# Sketch2Art
+# Sketch2Art Work in Progress
 2021-1 "Art&Tech" class, GIST
 
 ## Problem definition
