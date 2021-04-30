@@ -273,10 +273,77 @@ class DMI(nn.Module): #Dual Mask Injection
         self.bias_b = nn.Parameter(torch.zeros(1, in_channels, 1, 1)+0.01)
 
     def forward(self, feat, mask_raw):
-                        
         mask = F.interpolate(mask_raw, size=(feat.size(2), feat.size(3)))
         mask_bin = (torch.mean(mask, dim=1).unsqueeze(1) > 0) * 1
         mask_bin = mask_bin.type(mask.dtype)
+
         feat_a = self.weight_a * feat * mask_bin + self.bias_a
         feat_b = self.weight_b * feat * (1-mask_bin) + self.bias_b
+
+        # mask show (Type: Tensor)
+        # mask_imshow(mask_bin[0])
+
+        #####################################################################
+
+        # feature show (Type: Tensor)
+        # feat_a = feat * mask_bin
+        # feat_b = feat * (1-mask_bin)
+
+        # print('feature img: ',feat_a[0].shape)
+        # custom_imshow(feat_a[0])
+        # custom_imshow(feat_b[0])
+
         return feat_a + feat_b
+        # return feat_a
+
+
+
+## debug feature img
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def mask_imshow(img):
+    img = img.cpu()
+    img = img.numpy()
+    plt.imshow(np.transpose(img,(1,2,0)))
+    plt.show()
+
+step = 0
+
+def custom_imshow(img):
+    global step
+    # print(img.shape)
+    sz = img.shape[1]
+
+    img = img.detach().cpu()
+    img = img.numpy()
+
+    img = np.transpose(img,(1,2,0))
+    # print(img.shape)
+
+    # 파일 안정해줘서(img)라고 걍 흰 공백 저장하는 것 같음
+    # if sz==2:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_2.jpg')
+    # elif sz==4:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_4.jpg')
+    # elif sz==8:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_8.jpg')
+    # elif sz==16:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_16.jpg')
+    # elif sz==32:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_32.jpg')
+    # elif sz==64:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_64.jpg')
+    # elif sz==128:
+    #     plt.savefig('./fig_img/'+str(step)+'feature_map_128.jpg')
+    #
+    step += 1
+
+    # img = img[0][:][:] -> 틀린 예, 3d array를 시각화하고 싶음 아래처럼
+    # plt.imshow(img[:,:,0])
+    # plt.show()
+
+    if step > 100:
+        plt.imshow(img[:,:,0])
+        plt.show()

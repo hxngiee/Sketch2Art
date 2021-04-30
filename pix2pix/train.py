@@ -187,8 +187,8 @@ class Train:
         dataset_train = Dataset(dir_data_train, direction=self.direction, data_type=self.data_type, nch=self.nch_in, transform=transform_train)
         dataset_val = Dataset(dir_data_val, direction=self.direction, data_type=self.data_type, nch=self.nch_in, transform=transform_val)
         if mode == 'train_single':
-            loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=batch_size, shuffle=True, num_workers=8)
-            loader_val = torch.utils.data.DataLoader(dataset_val, batch_size=batch_size, shuffle=False, num_workers=8)
+            loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=batch_size, shuffle=True, num_workers=8,drop_last=True)
+            loader_val = torch.utils.data.DataLoader(dataset_val, batch_size=batch_size, shuffle=False, num_workers=8,drop_last=True)
 
         elif mode == 'train_multi':
             train_sampler = torch.utils.data.distributed.DistributedSampler(dataset_train)
@@ -400,9 +400,9 @@ class Train:
             # schedD.step()
 
             ## save
-            if (epoch % num_freq_save) == 0:
-                if args.rank == 0:
-                    self.save(dir_chck, netG, netD, optimG, optimD, epoch)
+#if (epoch % num_freq_save) == 0:
+#               if args.rank == 0:
+#                   self.save(dir_chck, netG, netD, optimG, optimD, epoch)
 
         writer_train.close()
         writer_val.close()
