@@ -2,7 +2,7 @@
 2021-1 "Art&Tech" class, GIST  
 hxngiee.github.io/2021-04-21-sketch2art  
 
-![ex_screenshot](./img/sketch2art-prototype.jpg)
+![ex_screenshot](./img/sketch2art-prototype.png)
 
 
 <!-- 
