@@ -1,6 +1,7 @@
 # Sketch2Art Work in Progress
 2021-1 "Art&Tech" class, GIST  
-hxngiee.github.io/2021-04-21-sketch2art
+hxngiee.github.io/2021-04-21-sketch2art  
+
 ![ex_screenshot](./img/sketch2art-prototype.jpg)
 
 
